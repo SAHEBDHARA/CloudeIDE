@@ -3,7 +3,7 @@ import FileTreeNode from './Tree'
 
 const Filestructure = () => {
   return (
-    <div className='bg-slate-300 h-[100%] w-[20%] '>
+    <div className='bg-[#181818] h-[100%] w-[20%] border'>
       <FileTreeNode/>
     </div>
   )

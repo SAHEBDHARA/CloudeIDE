@@ -44,7 +44,10 @@ function Terminal() {
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      if (connection) {
+      if(inputValue === "clear"){
+        setTerminalOutput([])
+      }
+      else if (connection) {
         connection.send(
           JSON.stringify({
             type: 'terminal:write',
@@ -65,7 +68,7 @@ function Terminal() {
 
   return (
     <div className="container ">
-      <div className="flex items-center justify-center h-8 bg-black">
+      <div className="flex items-center justify-center h-8 bg-[#181818] border-t ">
         
         <p className="user">johndoe@admin</p>
       </div>
@@ -78,11 +81,11 @@ function Terminal() {
               <span className="terminal_location ">~</span>
               <span className="terminal_bling">$</span>
               <span className="terminal_cursor"></span>
-              <span className="terminal_input">{output}</span>
+              <span className="terminal_input ">{output}</span>
             </span>
           ):(<></>) }
           {index < terminalOutput.length - 1 && index % 2 === 0 && (
-            <div className="terminal_response">{terminalOutput[index + 1]}</div>
+            <div className="terminal_response text-[#AFAFAF]">{terminalOutput[index + 1]}</div>
           )}
         </div>
         ))}

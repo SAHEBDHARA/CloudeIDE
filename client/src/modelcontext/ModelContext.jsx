@@ -7,6 +7,7 @@ const FileTreeContext = createContext();
 const FileTreeProvider = ({ children }) => {
   const [tree, setTree] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [selectedPath, setSelectedPath] = useState("")
 
   const fetchTree = async () => {
     setLoading(true);
@@ -27,6 +28,7 @@ const FileTreeProvider = ({ children }) => {
 
   const onSelect = (path) => {
     console.log(`Selected file: ${path}`);
+    setSelectedPath(path)
   };
 
   const updateTree = (newTree) => {
@@ -62,7 +64,7 @@ const FileTreeProvider = ({ children }) => {
   }, [ws]);
 
   return (
-    <FileTreeContext.Provider value={{ tree, loading, onSelect, updateTree }}>
+    <FileTreeContext.Provider value={{ tree, loading, onSelect, updateTree, selectedPath }}>
       {children}
     </FileTreeContext.Provider>
   );

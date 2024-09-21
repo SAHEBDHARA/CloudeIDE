@@ -9,7 +9,8 @@ import { LiaFolderOpenSolid } from "react-icons/lia";
 
 const FileTreeNode = ({ fileName, nodes, onSelect, path }) => {
   const isDir = !!nodes; 
-  const [expanded, setExpanded] = useState(true); 
+  const isRoot = path === "";
+  const [expanded, setExpanded] = useState(isRoot); 
 
   const handleToggle = (e) => {
     e.stopPropagation();
@@ -63,7 +64,7 @@ const FileTree = () => {
   }
 
   if (!tree) {
-    return <div>No files found</div>;
+    return <div className='text-white justify-center items-center'>No files found</div>;
   }
 
   return <FileTreeNode onSelect={onSelect} fileName="/" path="" nodes={tree} />;

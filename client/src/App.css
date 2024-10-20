@@ -1,0 +1,26 @@
+.react-terminal-wrapper{
+    padding: 15px !important;
+}
+
+.react-terminal-window-buttons{
+    display: none !important;
+}
+
+/* Custom scrollbar styles */
+.react-terminal::-webkit-scrollbar {
+    width: 8px !important; /* Width of the scrollbar */
+  }
+  
+  .react-terminal::-webkit-scrollbar-track {
+    background: #2a2a2a !important; /* Background of the scrollbar track */
+  }
+  
+  .react-terminal::-webkit-scrollbar-thumb {
+    background: #4a4a4a !important; /* Color of the scrollbar thumb */
+    border-radius: 4px !important; /* Rounded corners for the thumb */
+  }
+  
+  .react-terminal::-webkit-scrollbar-thumb:hover {
+    background: #6a6a6a !important; /* Color on hover */
+  }
+  

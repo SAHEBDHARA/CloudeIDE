@@ -70,11 +70,30 @@ const TerminalController = () => {
             data: terminalInput,
           })
         );
-
+        if (terminalInput.startsWith('cd ')) {
+          const newDir = terminalInput.split(' ')[1]; // Get the directory name
+          if (newDir === '..') {
+            const parentDir = currentDir.split('/').slice(0, -1).join('/');
+            setCurrentDir(parentDir || '/'); // Ensure we don't end up with an empty string
+          } else {
+            // Append new directory
+            const updatedDir = currentDir.endsWith('/')
+              ? `${currentDir}${newDir}`
+              : `${currentDir}/${newDir}`; // Append with a slash if needed
+            
+            // Check if currentDir is not just a root directory
+            if (currentDir !== '/' && currentDir !== '~/') {
+              setCurrentDir(updatedDir); // Update the current directory
+            } else {
+              // If it is root, set it directly
+              setCurrentDir(`/${newDir}`);
+            }
+        }
+      }
         // Include the current directory in the terminal output
         setTerminalLineData((prevData) => [
           ...prevData,
-          <TerminalOutput key={prevData.length}>{`user@ ${currentDir}: ${terminalInput}`}</TerminalOutput>
+          <TerminalOutput key={prevData.length}>{`user@~ ${currentDir}: ${terminalInput}`}</TerminalOutput>
         ]);
 
         setCommandHistory((prev) => [...prev, terminalInput]);
@@ -122,7 +141,7 @@ const TerminalController = () => {
               setInput(value);
               handleInput(value);
             }}
-            prompt={`user@ ${currentDir}`} // Use currentDir for the prompt
+            prompt={`user@~ ${currentDir}`} 
             input={input}
             onKeyDown={handleKeyDown}
           >

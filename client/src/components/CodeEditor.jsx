@@ -98,8 +98,7 @@ const CodeEditor = () => {
         {fileTabs.map((tab) => (
           <div
             key={tab.path}
-            style={{ fontFamily: "'Roboto Mono', monospace" }}
-            className={`p-2 cursor-pointer transition-colors duration-300 ease-in-out ${
+              className={`p-2 mx-2 cursor-pointer transition-colors duration-300 ease-in-out ${
               tab.isActive ? "bg-[#141414] text-white border-b border-b-gray-300" : "text-gray-400"
             }`}
             onClick={() => onSelect(tab.path)}
